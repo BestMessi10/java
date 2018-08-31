@@ -1,4 +1,4 @@
-shiro认证(登陆)思路：
+shiro认证(登陆)思路：//
 1获取当前subject,调用SecurityUtils.getSubject()
 2测试当前用户是否被认证。调用subject的isAuthenticated()
 3若没有被认证，则把用户和密码封装为UsernamePasswordToken对象
