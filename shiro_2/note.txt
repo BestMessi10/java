@@ -1,0 +1,32 @@
+shiro认证(登陆)思路：
+1获取当前subject,调用SecurityUtils.getSubject()
+2测试当前用户是否被认证。调用subject的isAuthenticated()
+3若没有被认证，则把用户和密码封装为UsernamePasswordToken对象
+1）创建一个表单页面
+2）把请求提交到springmvc的handLer
+3）获取用户名和密码
+4执行登陆：调用subject的login（AuthenticationToken）方法
+5自定义realm的方法，从数据库中获取对应的记录，返回给shiro
+1）实际上需要继承org.apache.shiro.realm.AuthorizingRealm
+2）实现org.apache.shiro.realm.AuthorizingRealm.doGetAuthorizationInfo(PrincipalCollection)方法
+6由shiro完成密码的比对
+
+
+密码的比对：通过 AuthenticatingRealm的CredentialsMatcher的属性进行密码的比对
+
+
+1如何把一个字符串加密成MD5，替换为当前Realm的CredentialsMatcher属性。
+2直接使用HashedCredentialsMatcher对象，并设置加密算法即可
+
+
+执行currentUser.login(token);的时候进去shiroRealm
+加密登陆：先表单输入密码，用shiro进行登陆，shiro进行md5加密（要配置），再从数据库查找出加密以后的密码与之对比，是则登陆成功
+
+盐值加密：在doGetAuthenticationInfo方法返回值创建new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName)构造器，
+盐至用方法来计算  盐值唯一 一般用user  id
+
+
+
+
+授权：需要继承AuthorizingRealm并实现doGetAuthorizationInfo抽象方法  AuthorizingRealm继承自AuthenticatingRealm，但没有实现doGetAuthorizationInfo方法
+所有认证和授权只需要集成AuthorizingRealm就可以了。同时实现他的2个抽象方法
