@@ -27,4 +27,3 @@ public class HelloController {
         return IMoocJSONResult.ok(bean);
     }
 }
-//
