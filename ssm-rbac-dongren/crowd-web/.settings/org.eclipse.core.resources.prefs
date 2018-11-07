@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/atguigu/crowd/controller/DispatcherController.java=UTF-8
+encoding//src/main/java/com/atguigu/crowd/web/AuthInterceptor.java=UTF-8
+encoding//src/main/java/com/atguigu/crowd/web/LoginInterceptor.java=UTF-8
+encoding//src/main/java/com/atguigu/crowd/web/ServerStartupListener.java=UTF-8

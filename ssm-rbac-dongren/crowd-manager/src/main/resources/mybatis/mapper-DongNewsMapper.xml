@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.crowd.dao.DongNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.aguigu.crowd.beam.DongNews" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
+    <result column="browse" property="browse" jdbcType="INTEGER" />
+    <result column="column_id" property="columnId" jdbcType="INTEGER" />
+    <result column="user" property="user" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, picture, content, publish_time, browse, column_id, user, update_time, 
+    video
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from d_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from d_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aguigu.crowd.beam.DongNews" >
+    insert into d_news (id, title, picture, 
+      content, publish_time, browse, 
+      column_id, user, update_time, 
+      video, status, uid, role, content_text)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{publishTime,jdbcType=VARCHAR}, #{browse,jdbcType=INTEGER}, 
+      #{columnId,jdbcType=INTEGER}, #{user,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{video,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{uid,jdbcType=VARCHAR},#{role,jdbcType=VARCHAR},#{contentText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aguigu.crowd.beam.DongNews" >
+    insert into d_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="browse != null" >
+        browse,
+      </if>
+      <if test="columnId != null" >
+        column_id,
+      </if>
+      <if test="user != null" >
+        user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="browse != null" >
+        #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null" >
+        #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="user != null" >
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aguigu.crowd.beam.DongNews" >
+    update d_news
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="browse != null" >
+        browse = #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null" >
+        column_id = #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="user != null" >
+        user = #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aguigu.crowd.beam.DongNews" >
+    update d_news
+    set title = #{title,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      browse = #{browse,jdbcType=INTEGER},
+      column_id = #{columnId,jdbcType=INTEGER},
+      user = #{user,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+       status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryByColumnId" resultType="com.aguigu.crowd.beam.DongNews">
+  		select * from d_news where column_id = #{i}
+  </select>
+  <select id="pageQuery" resultType="com.aguigu.crowd.beam.DongNews">
+  		select n.id, n.content_text as contentText, n.status, n.title, n.user, n.publish_time as publishTime, n.content, n.column_id as columnId, c.name as  columnName
+  		from d_news n, d_column c
+		<where>
+			<if test="uid != null">
+				
+				and  uid = #{uid} 
+			</if>
+			<if test="manager != null">
+				
+				and role = 3
+			</if>
+			<if test="columnId != null">
+				
+				and  column_id = #{columnId} and status = 0
+			</if>
+			<if test="column != null">
+				
+				and  column_id = #{column} and status = 1
+			</if>
+			<if test="columnhot != null">
+				
+				and  column_id != 5 and status = 1
+			</if>
+			<if test="queryText != null">
+				
+				and title like concat('%', #{queryText}, '%') 
+			</if>
+			and n.column_id = c.id
+		</where>
+		 order by n.id desc
+		 limit #{start}, #{size}
+  </select>
+  
+  <select id="pageQueryCount" resultType="int">
+		select 
+			count(*) 
+			
+		from d_news
+		<where>
+			<if test="uid != null">
+				
+				and  uid = #{uid} 
+			</if>
+			<if test="manager != null">
+				
+				and role = 3
+			</if>
+			<if test="column != null">
+				
+				and  column_id = #{column} and status = 1
+			</if>
+			<if test="columnId != null">
+				
+				and  column_id = #{columnId} and status = 0
+			</if>
+			<if test="queryText != null">
+				and title like concat('%', #{queryText}, '%') 
+			</if>
+		</where>
+	</select>
+	<delete id="deletedongNewss">
+		delete from d_news where id in 
+		<foreach collection="dongNewsids" item="dongNewsid" open="(" close=")" separator=",">
+			#{dongNewsid}
+		</foreach>
+	</delete>
+</mapper>
